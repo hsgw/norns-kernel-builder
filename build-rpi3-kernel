@@ -4,9 +4,9 @@ set -x -e
 export LINUX_SRC_DIR=${LINUX_SRC_DIR:-${WORKDIR}/linux}
 
 # Use -j<nproc> as default if MAKEFLAGS is not set
-if [[ -z "${MAKEFLAGS}" ]]; then
-  export MAKEFLAGS="-j$(nproc)"
-fi
+#if [[ -z "${MAKEFLAGS}" ]]; then
+#  export MAKEFLAGS="-j$(nproc)"
+#fi
 
 # Start building the kernel
 patch_dir_array=( "${PATCH_DIRS}" )
@@ -36,7 +36,8 @@ KERNEL_VERSION=$(make kernelrelease | grep "^[45].")
 echo "Building kernel ${KERNEL_VERSION}"
 
 # Build everything
-make "${MAKEFLAGS}" zImage modules dtbs
+#make "${MAKEFLAGS}" zImage modules dtbs
+make zImage modules dtbs
 
 # Copy to tmp destionation
 export TMP_DEST=/tmp/build
