@@ -1,21 +1,21 @@
-FROM debian:jessie
+FROM debian:bullseye
 
 # Install build dependencies
 RUN apt-get update && apt-get install -y \
   bc \
   bison \
   build-essential \
+  crossbuild-essential-armhf \
   curl \
   flex \
   git-core \
+  libc6-dev \
   libncurses5-dev \
   libssl-dev \
-  module-init-tools
+  kmod
 
-# Install crosscompile toolchain for ARM64/aarch64
-RUN mkdir -p /opt/linaro && \
-  curl -sSL https://releases.linaro.org/components/toolchain/binaries/7.1-2017.08/arm-linux-gnueabihf/gcc-linaro-7.1.1-2017.08-x86_64_arm-linux-gnueabihf.tar.xz | tar xfJ - -C /opt/linaro
-ENV CROSS_COMPILE=/opt/linaro/gcc-linaro-7.1.1-2017.08-x86_64_arm-linux-gnueabihf/bin/arm-linux-gnueabihf-
+# Cross compile for 32bit arm
+ENV CROSS_COMPILE=arm-linux-gnueabihf-
 ENV ARCH=arm
 
 # Create working directory
