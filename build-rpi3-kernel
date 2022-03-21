@@ -55,7 +55,7 @@ do
     if [ -f platform/"${platform}"/config.txt ] ; then
         cp platform/"${platform}"/config.txt "${TMP_DEST}"/boot/
         # Add kernel version to config.txt
-        echo -e "\nkernel=kernel-${KERNEL_VERSION}.img" >> "${TMP_DEST}"/boot/config.txt
+        echo -e "\nkernel=${KERNEL_IMAGE_NAME:-kernel-${KERNEL_VERSION}}.img" >> "${TMP_DEST}"/boot/config.txt
     fi
 
     # Copy cmdline.txt to /boot if it exists
