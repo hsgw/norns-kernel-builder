@@ -46,7 +46,7 @@ do
     INSTALL_MOD_PATH="${TMP_DEST}" make modules_install
 
     mkdir -p "${TMP_DEST}/boot/overlays"
-    cp arch/arm/boot/zImage "${TMP_DEST}/boot/kernel-${KERNEL_VERSION}.img"
+    cp arch/arm/boot/zImage "${TMP_DEST}/boot/${KERNEL_IMAGE_NAME:-kernel-${KERNEL_VERSION}}.img"
     cp arch/arm/boot/dts/*.dtb "${TMP_DEST}"/boot/
     cp arch/arm/boot/dts/overlays/*.dtb* "${TMP_DEST}"/boot/overlays/
     cp arch/arm/boot/dts/overlays/README "${TMP_DEST}"/boot/overlays/
